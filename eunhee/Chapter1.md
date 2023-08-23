@@ -13,7 +13,7 @@ aler('Hello','TypeScript');
 ```
 
 ### 아이템 2 :TS 설정 이해
-어떻게 설정하느냐에 따라 완전히 다른 언어처럼 느껴질 수 있기 때문에 `noImplicitAny` 와 `strictNullChecks`를 이해봅시다. `noImplicitAny` 는 변수들이 미리 정의된 타입을 가져야 하는지 여부를 제어합니다. 만약 `noImplicitAny`가 true로 설정되었다면 명시적으로 :any라고 선언해 주거나 분명한 타입의 사용으로 오류를 막아야 합니다. 
+`noImplicitAny` 는 변수들이 미리 정의된 타입을 가져야 하는지 여부를 제어합니다. 만약 `noImplicitAny`가 true로 설정되었다면 명시적으로 :any라고 선언해 주거나 분명한 타입의 사용으로 오류를 막아야 합니다. 
 ```json
 {
   "complierOptions" :{
@@ -21,9 +21,10 @@ aler('Hello','TypeScript');
   }
 }
 ```
-`strictNullChecks`는 null과 undefined가 모든 타입에서 허용되는 지 확인하는 설정입니다. 
+`strictNullChecks`는 null과 undefined가 모든 타입에서 허용되는 지 확인하는 설정입니다. null과 undefined사용시 의도를 명시적으로 드러내야 합니다. 
 ```js
 const x: number =null;
 // `strictNullChecks` 미설정시 유효하나, 설정하면 오류가 발생합니다.
-// ~ "null"의 형식은 'number'형식에 할당할 수 없습니다. 
+// ~ "null"의 형식은 'number'형식에 할당할 수 없습니다.
+const x: number|null =null;
 ```
