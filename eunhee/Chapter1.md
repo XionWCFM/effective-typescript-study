@@ -13,7 +13,7 @@ aler('Hello','TypeScript');
 ```
 
 ### 아이템 2 :TS 설정 이해
-`noImplicitAny` 는 변수들이 미리 정의된 타입을 가져야 하는지 여부를 제어합니다. 만약 `noImplicitAny`가 true로 설정되었다면 명시적으로 :any라고 선언해 주거나 분명한 타입의 사용으로 오류를 막아야 합니다. 
+타입스크립트 설정은 커맨드 라인을 이용하기 보다 협업시 설정들을 쉽게 파악할 수 있는`tsconfig.json`을 사용하는 것이 좋고`noImplicitAny` 는 변수들이 미리 정의된 타입을 가져야 하는지 여부를 제어합니다. 만약 `noImplicitAny`가 true로 설정되었다면 명시적으로 :any라고 선언해 주거나 분명한 타입의 사용으로 오류를 막아야 합니다. 
 ```json
 {
   "complierOptions" :{
@@ -21,10 +21,11 @@ aler('Hello','TypeScript');
   }
 }
 ```
-`strictNullChecks`는 null과 undefined가 모든 타입에서 허용되는 지 확인하는 설정입니다. null과 undefined사용시 의도를 명시적으로 드러내야 합니다. 
+`strictNullChecks`는 null과 undefined가 모든 타입에서 허용되는 지 확인하는 설정입니다.`strictNullChecks` 설정시  `noImplicitAny` 를 먼저 설정해야 하며, null과 undefined사용시 의도를 명시적으로 드러내야 합니다.
 ```js
 const x: number =null;
 // `strictNullChecks` 미설정시 유효하나, 설정하면 오류가 발생합니다.
 // ~ "null"의 형식은 'number'형식에 할당할 수 없습니다.
 const x: number|null =null;
 ```
+JS 프로젝트를 TS로 마이그레이션 하는 것이 아니라면 "noImplicitAny"를 설정하는 게 좋고 "undefined는 객체가 아닙니다" 같은 런타입 오류 방지를 위해 "strictNullChecks"를 설정하는 게 좋고 업격한 타입 체크를 원한다면 strict 설정을 하면 됩니다. 
