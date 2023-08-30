@@ -67,6 +67,7 @@ function cal(shape: Shape){
   }
 }
 ```
+속성 체크는 런타임에 접근 가능한 값에만 관련되지만, 타입 체커 역시도 shape의 타입을 Rectangle 로 보정해주기 때문에 오류가 사라집니다. 
 ```ts
 //해결코드
 function cal(shape: Shape){
@@ -77,4 +78,5 @@ function cal(shape: Shape){
   }
 }
 ```
+또 다른 방법으로 "태그 기법"이 있습니다. 
 
