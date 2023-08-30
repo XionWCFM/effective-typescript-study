@@ -46,5 +46,35 @@ JS 프로젝트를 TS로 마이그레이션 하는 것이 아니라면 "noImplic
   }
 }
 ```
+### 런타임에는 타입 체크가 불가능
+instanceof 체크는 런타임에 일어나나, Rectangle 타입은 런타임 이전인 자바스크립트로 컴파일되는 과정에서 제거되버리기 때문에 다음과 같이 코드를 짤 수 없습니다. 
+*자바스크립트로 컴파일되는 과정에서 모든 인터페이스, 타입, 타입구문은 제거가된이후 런타임단계로 넘어갑니다. 
+```ts
+//오류가 나는 코드 
+interface Square {
+  width:number;
+}
+interface Rectangle extends Square {
+  height:number;
+}
+type Shape = Square | Rectangle;
 
+function cal(shape: Shape){
+  if(shape instanceof Rectangle){ //Rectangle는 타입으로 자바스크립트 컴파일 하는 과정에서 제거되므로 로직에 관여해선 안된다. 
+    return shape.width * shape.height;
+  }else{
+    return shape.width * shape.width;
+  }
+}
+```
+```ts
+//해결코드
+function cal(shape: Shape){
+  if("height" in shape){ //shape 변수안에 height이 있다면 타입이 Rectangle로 가정
+    return shape.width * shape.height;
+  }else{
+    return shape.width * shape.width;
+  }
+}
+```
 
