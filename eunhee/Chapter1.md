@@ -13,7 +13,7 @@ aler('Hello','TypeScript');
 ```
 
 ### 아이템 2 :TS 설정 이해
-타입스크립트 설정은 커맨드 라인을 이용하기 보다 협업시 설정들을 쉽게 파악할 수 있는`tsconfig.json`을 사용하는 것이 좋고`noImplicitAny` 는 변수들이 미리 정의된 타입을 가져야 하는지 여부를 제어합니다. 만약 `noImplicitAny`가 true로 설정되었다면 명시적으로 :any라고 선언해 주거나 분명한 타입의 사용으로 오류를 막아야 합니다. 
+타입스크립트 설정은 커맨드 라인을 이용하기 보다 협업시 설정들을 쉽게 파악할 수 있는`tsconfig.json`파일을 사용하는 것이 좋고`noImplicitAny` 는 변수들이 미리 정의된 타입을 가져야 하는지 여부를 제어합니다. 만약 `noImplicitAny`가 true로 설정되었다면 명시적으로 :any라고 선언해 주거나 분명한 타입의 사용으로 오류를 막아야 합니다. 
 ```json
 {
   "complierOptions" :{
