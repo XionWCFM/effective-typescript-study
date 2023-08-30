@@ -30,7 +30,7 @@ aler('Hello','TypeScript');
 }
 ```
 ```ts
-const y = undefined;
+const y = undefined; //허용
 const x :number = null; //오류
 const heell :number = undefined; //오류
 const heell2 :number|undefined = undefined; //해결
