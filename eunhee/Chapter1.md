@@ -22,6 +22,13 @@ aler('Hello','TypeScript');
 }
 ```
 `strictNullChecks`는 null과 undefined가 모든 타입에서 허용되는 지 확인하는 설정입니다.`strictNullChecks` 설정시  `noImplicitAny` 를 먼저 설정해야 하며, null과 undefined사용시 의도를 명시적으로 드러내야 합니다.
+```json
+{
+  "complierOptions" :{
+    "strictNullChecks": true
+  }
+}
+```
 ```js
 const x: number =null;
 // `strictNullChecks` 미설정시 유효하나, 설정하면 오류가 발생합니다.
