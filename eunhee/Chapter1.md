@@ -29,11 +29,11 @@ aler('Hello','TypeScript');
   }
 }
 ```
-```js
-const x: number =null;
-// `strictNullChecks` 미설정시 유효하나, 설정하면 오류가 발생합니다.
-// ~ "null"의 형식은 'number'형식에 할당할 수 없습니다.
-const x: number|null =null;
+```ts
+const y = undefined;
+const x :number = null; //오류
+const heell :number = undefined; //오류
+const heell2 :number|undefined = undefined; //해결
 ```
 JS 프로젝트를 TS로 마이그레이션 하는 것이 아니라면 "noImplicitAny"를 설정하는 게 좋고 "undefined는 객체가 아닙니다" 같은 런타입 오류 방지를 위해 "strictNullChecks"를 설정하는 게 좋고 업격한 타입 체크를 원한다면 strict 설정을 하면 됩니다. 
 
