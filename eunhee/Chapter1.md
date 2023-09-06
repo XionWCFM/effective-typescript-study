@@ -128,3 +128,4 @@ function cal(shape: Shape){
 }
 ```
 type Shape = Square | Rectangle 부분에서 Rectangle은 타입으로 참조되지만, shape instanceof Rectangle 부분에서는 값으로 참조된다. 
+- 타입스크립트 타입은 런타임 성능에 영향을 주지 않습니다. 
