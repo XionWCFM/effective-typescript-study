@@ -79,4 +79,26 @@ function cal(shape: Shape){
 }
 ```
 또 다른 방법으로 "태그 기법"이 있습니다. 
+```ts
+interface Square {
+  kind : 'square';
+  width:number;
+}
 
+interface Rectangle  {
+  kind:'rectangle';
+  height:number;
+  width: number;
+}
+
+type Shape = Square | Rectangle;
+
+function cal(shape: Shape){
+  if(shape.kind === "rectangle"){
+    return shape.width * shape.height;
+  }else{
+    return shape.width * shape.width;
+  }
+
+}
+```
