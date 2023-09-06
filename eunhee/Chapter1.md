@@ -78,7 +78,7 @@ function cal(shape: Shape){
   }
 }
 ```
-또 다른 방법으로 "태그 기법"이 있습니다. 
+"태그 기법"
 ```ts
 interface Square {
   kind : 'square';
@@ -86,7 +86,7 @@ interface Square {
 }
 
 interface Rectangle  {
-  kind:'rectangle';
+  kind:'rectangle'; //태그된 유니온 
   height:number;
   width: number;
 }
@@ -102,3 +102,29 @@ function cal(shape: Shape){
 
 }
 ```
+클래스 : 타입(런타임 접근 불가)과 값(런타임 접근 가능)을 둘 다 사용하는 기법
+```ts
+class Square {
+ constructor( public width: number){
+
+ }}
+ class Rectangle extends Square {
+ constructor(public width: number, public height : number){
+  super(width);
+ }
+
+ }
+
+
+type Shape = Square | Rectangle;
+
+function cal(shape: Shape){
+  if(shape instanceof Rectangle){
+    return shape.width * shape.height;
+  }else{
+    return shape.width * shape.width;
+  }
+
+}
+```
+type Shape = Square | Rectangle 부분에서 Rectangle은 타입으로 참조되지만, shape instanceof Rectangle 부분에서는 값으로 참조된다. 
