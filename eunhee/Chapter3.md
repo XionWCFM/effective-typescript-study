@@ -78,3 +78,74 @@ function getElementContent(el: HTMLElement) {
 }
 
 ```
+### 24. 일관성 있는 별칭 사용하기 
+별칭을 사용하는 것보다 구조 분해 할당으로 변수를 뽑아내는 것이 더 좋습니다. 
+```ts
+interface Coordinate {
+  x: number;
+  y: number;
+}
+
+interface BoundingBox {
+  x: [number, number];
+  y: [number, number];
+}
+
+interface Polygon {
+  exterior: Coordinate[];
+  holes: Coordinate[][];
+  bbox?: BoundingBox;
+}
+function isPointInPolygon(polygon: Polygon, pt: Coordinate) {
+  const box = polygon.bbox;
+  if (polygon.bbox) {
+    if (pt.x < box.x[0] || pt.x > box.x[1] ||
+        //     ~~~                ~~~  Object is possibly 'undefined'
+        pt.y < box.y[1] || pt.y > box.y[1]) {
+        //     ~~~                ~~~  Object is possibly 'undefined'
+      return false;
+    }
+  }
+  // ...
+}
+```
+```ts
+function isPointInPolygon(polygon: Polygon, pt: Coordinate) {
+  const {bbox} = polygon;
+  if (bbox) {
+    const {x, y} = bbox;
+    if (pt.x < x[0] || pt.x > x[1] ||
+        pt.y < x[0] || pt.y > y[1]) {
+      return false;
+    }
+  }
+  // ...
+}
+```
+### 26 타입 추론 작동 이해하기
+변수를 추출해서 별도로 선언시 오류가 발생한다면 타입 선언을 추가해야합니다. 변수가 정말로 상수라면 상수 단언을 사용해야하지만 주의가 필요합니다.
+```ts
+type Language = 'JavaScript' | 'TypeScript' | 'Python';
+function setLanguage(language: Language) { /* ... */ }
+
+setLanguage('JavaScript');  // OK
+
+let language = 'JavaScript';
+setLanguage(language);
+         // ~~~~~~~~ Argument of type 'string' is not assignable
+         //          to parameter of type 'Language'
+
+//language를 선언한 시점에 타입이 string로 추론되어서 에러 발생
+
+let language1: Language = 'JavaScript';
+setLanguage(language1);  // OK
+
+//language1 선언 때 타입을 지정해주는 방법을 해결
+
+const language = 'JavaScript';
+setLanguage(language);  // OK
+
+//const를 사용하여 타입 제한
+```
+
+
